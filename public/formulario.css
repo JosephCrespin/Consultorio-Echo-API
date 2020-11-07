@@ -1,0 +1,25 @@
+.container {
+  padding-top: 50px;
+}
+
+#flecha {
+  color: #007bff;
+}
+
+#back-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#fecha {
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+}
