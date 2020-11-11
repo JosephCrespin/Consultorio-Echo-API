@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Database;
+use App\Logger\Logger;
 
 class Consulta {
 
@@ -39,6 +40,7 @@ class Consulta {
                 array_push($listaConsultas, $itemConsulta);
             }
             
+        Logger::log("get", "createList", $listaConsultas);
         return $listaConsultas;
     }
     
@@ -47,6 +49,8 @@ class Consulta {
 
     {
         $this->database->mysql->query("INSERT INTO `consultas` (`name`, `tema`) VALUES ('{$_POST["name"]}','{$_POST["tema"]}');");
+        Logger::log("Post", "save");
+        
     }
 
     public function delete()
