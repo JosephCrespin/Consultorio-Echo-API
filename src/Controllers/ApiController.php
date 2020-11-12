@@ -43,9 +43,22 @@ class ApiController
     public function index(): void
     {
         $consulta = new Consulta();
+
         $consultas = $consulta->crearListaConsultas();
+        $listaJson = [];
+
+        foreach($consultas as $consulta)  {
+            $consultaJson = [
+                "id" => $consulta->id,
+                "name" => $consulta->name,
+                "tema" => $consulta->tema,
+                "fecha" => $consulta->fecha,
+                
+            ];
+            array_push($listaJson, $consultaJson);
+        }
         
-        new View ("ListaConsultas", ["consultas" => $consultas,]);
+        echo json_encode($listaJson);
       
     }
 

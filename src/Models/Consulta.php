@@ -16,7 +16,7 @@ class Consulta {
 
     public function __construct($id = null, $name = "", $tema = "", $fecha = null)
     {
-        $this->id = $id;
+        $this->id = uniqid();
         $this->name = $name;
         $this->tema = $tema;
         $this->fecha = $fecha;
@@ -42,14 +42,14 @@ class Consulta {
             
         Logger::log("get", "createList", $listaConsultas);
          
-        return json_encode($listaConsultas);
+        return $listaConsultas;
     }
     
 
     public function savedb() 
 
     {
-        $this->database->mysql->query("INSERT INTO `consultas` (`name`, `tema`) VALUES ('{$_POST["name"]}','{$_POST["tema"]}');");
+        $this->database->mysql->query("INSERT INTO `consultas` (`id`,`name`, `tema`) VALUES ('{$this->id}','{$_POST["name"]}','{$_POST["tema"]}');");
         Logger::log("Post", "save");
         
     }
