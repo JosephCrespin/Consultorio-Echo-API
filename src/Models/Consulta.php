@@ -41,7 +41,8 @@ class Consulta {
             }
             
         Logger::log("get", "createList", $listaConsultas);
-        return $listaConsultas;
+         
+        return json_encode($listaConsultas);
     }
     
 
@@ -65,6 +66,7 @@ class Consulta {
         
         $result = $query->fetchAll();
         return new Consulta($result[0]["id"], $result[0]["name"], $result[0]["tema"], $result[0]["fecha"]);
+        
     }
 
     public function update() 
