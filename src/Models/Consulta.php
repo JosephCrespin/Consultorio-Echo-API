@@ -40,7 +40,7 @@ class Consulta {
                 array_push($listaConsultas, $itemConsulta);
             }
             
-        Logger::log("get", "createList", $listaConsultas);
+        Logger::log("get", "createList");
          
         return $listaConsultas;
     }

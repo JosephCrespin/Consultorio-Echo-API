@@ -11,6 +11,11 @@ class ApiController
 
     public function __construct()
     {   
+        if(isset($_GET) && !isset($_GET["action"])) {
+            $this->index();
+            return;
+        }
+
         if(isset($_GET) && ($_GET["action"] == "create")) {
             $this->create();
             return;
@@ -37,7 +42,7 @@ class ApiController
         }
 
 
-        $this->index();
+        
     }
    
     public function index(): void
