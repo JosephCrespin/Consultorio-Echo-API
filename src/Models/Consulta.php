@@ -51,20 +51,22 @@ class Consulta {
     public function savedb() 
 
     {
+        
         $this->database->mysql->query("INSERT INTO `consultas` (`id`,`name`, `tema`) VALUES ('{$this->id}','{$_POST["name"]}','{$_POST["tema"]}');");
         Logger::log("Post", "save");
+        
         
     }
 
     public function delete($id)
     
     {
-        $this->database->mysql->query("DELETE FROM `consultas` WHERE `consultas`.`id`={$id}");                            
+        $this->database->mysql->query("DELETE FROM `consultas` WHERE `consultas`.`id`='{$id}'");                            
     }
     
     public function encontrarId($id)
     {
-        $query = $this->database->mysql->query("SELECT * FROM `consultas` WHERE `id` = {$id}");
+        $query = $this->database->mysql->query("SELECT * FROM `consultas` WHERE `id` = '{$id}'");
         
         $result = $query->fetchAll();
         return new Consulta($result[0]["id"], $result[0]["name"], $result[0]["tema"], $result[0]["fecha"], $result[0]["hecho"]);
@@ -73,7 +75,7 @@ class Consulta {
 
     public function update($id) 
     {
-        $this->database->mysql->query("UPDATE `consultas` SET `name` = '{$this->name}', `tema` ='{$this->tema}' WHERE `consultas`.`id`={$id}"); 
+        $this->database->mysql->query("UPDATE `consultas` SET `name` = '{$this->name}', `tema` ='{$this->tema}' WHERE `consultas`.`id`='{$id}'"); 
     }
 
     public function rename($name, $tema) 
