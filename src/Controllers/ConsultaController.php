@@ -35,6 +35,10 @@ class ConsultaController
             $this->update($_POST, $_GET["id"]);
             return;
         }
+        if(isset($_GET) && ($_GET["action"] == "marcarHecha")) {
+            $this->marcarHecha($_POST, $_GET["id"]);
+            return;
+        }
 
 
         $this->index();
@@ -51,13 +55,15 @@ class ConsultaController
 
     public function create(): void
     {
+    
         new View ("CrearConsulta");
 
     }
     
     public function save($request): void
     {
-       $consulta = new consulta($request["name"],["tema"]);
+        $id = uniqid();
+       $consulta = new consulta($id, $request["name"],["tema"]);
        $consulta->savedb();
        
        $this->index();
@@ -65,11 +71,13 @@ class ConsultaController
     }
 
 
-    public function delete($id)
+    public function delete($request)
     {
-        $consultaDelete = new consulta();
+       
+        $id = $request;
+        $consultaDelete = new consulta($id);
         $consulta = $consultaDelete->encontrarId($id);
-        $consulta->delete();
+        $consulta->delete($id);
 
         $this->index();
 
@@ -90,10 +98,22 @@ class ConsultaController
         $consultaEnviar = new consulta();
         $consulta = $consultaEnviar->encontrarId($id);
         $consulta->rename($request ['name'], $request ['tema']);
-        $consulta->update(); 
+        $consulta->update($id); 
 
         $this->index();
     }
+
+    public function marcarHecha(array $request, $id){
+
+        $consultaHecha = new consulta();
+        $consulta = $consultaHecha->encontrarId($id);
+        $consulta->consultaTerminada($id);
+        
+
+        $this->index();
+        
+    }
+
     
 }
 

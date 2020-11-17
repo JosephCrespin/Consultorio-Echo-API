@@ -20,6 +20,7 @@ class ApiController
             $this->create();
             return;
         }
+        
 
         if(isset($_GET) && ($_GET["action"] == "save")) {
             $this->save($_POST);
@@ -40,10 +41,12 @@ class ApiController
             $this->update($_POST, $_GET["id"]);
             return;
         }
+       
+    }
+        
 
 
         
-    }
    
     public function index(): void
     {
@@ -112,6 +115,8 @@ class ApiController
 
         $this->index();
     }
+
+    
     
 }
 
