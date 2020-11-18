@@ -4,9 +4,6 @@
 <a href="?action=create">
 <button type="button" class="btn btn-outline-dark">Crear Consulta</button> 
 </a>
-<a href="?action=done">
-<button type="button" class="btn btn-outline-dark">Historial</button> 
-</a>
 
   <table class="table table-hover table-dark">
     <thead>
@@ -25,9 +22,6 @@
         { echo "
                 <tr>
                   <td>
-                    <a href='?action=marcarHecha&id={$consulta->id}'>
-                    <button class= 'btn btn-danger'>Done</button></a>
-                  </th>
                   <th scope='row'>{$consulta->id}</th> 
                   <td>{$consulta->name}</td>
                   <td>{$consulta->tema}</td>
@@ -35,8 +29,6 @@
                   <td>
                   <a href='?action=delete&id={$consulta->id}'>
                   <button class= 'btn btn-danger'>Delete</button></a>
-                  <a href='?action=edit&id={$consulta->id}'>
-                  <button class= 'btn btn-secondary'>Edit</button></a>
                   </td>
                 </tr>
                 ";
@@ -45,6 +37,3 @@
     </tbody>
   </table>
 </body>
-
-
-</html>

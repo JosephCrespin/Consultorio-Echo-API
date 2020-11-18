@@ -39,6 +39,10 @@ class ConsultaController
             $this->marcarHecha($_POST, $_GET["id"]);
             return;
         }
+        if(isset($_GET) && ($_GET["action"] == "done")) {
+            $this->historial();
+            return;
+        }
 
 
         $this->index();

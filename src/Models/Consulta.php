@@ -29,12 +29,8 @@ class Consulta {
 
     public function crearListaConsultas ()
     {
-        $query = $this->database->mysql->query("select * FROM consultas");
+        $query = $this->database->mysql->query("select * FROM consultas WHERE hecho = 0");
      
-        // Para que serve el fetchAll?????? = nose 
-
-        // $consultasArray = $query->fetchAll();
-
         $listaConsultas = [];
 
             foreach ($query as $consulta) {
