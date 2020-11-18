@@ -9,38 +9,20 @@ use App\Views\View;
 class ApiController
 {
 
-    public function __construct()
+    public function __construct(string $method, array $content = null, $id = null)
     {   
-        if(isset($_GET) && !isset($_GET["action"])) {
+        if($method == "GET") {
             $this->index();
-            return;
-        }
-
-        if(isset($_GET) && ($_GET["action"] == "create")) {
-            $this->create();
-            return;
         }
         
-
-        if(isset($_GET) && ($_GET["action"] == "save")) {
-            $this->save($_POST);
-            return;
+        if($method == "POST") {
+            $this->save($content);
+        }   
+        
+        if($method == "DELETE") {
+            $this->delete($id);
         }
-
-         if(isset($_GET) && ($_GET["action"] == "delete")) {
-            $this->delete($_GET["id"]);
-            return;
-        }
-
-        if(isset($_GET) && ($_GET["action"] == "edit")) {
-            $this->edit($_GET["id"]);
-            return;
-        }
-
-        if(isset($_GET) && ($_GET["action"] == "update")) {
-            $this->update($_POST, $_GET["id"]);
-            return;
-        }
+        
        
     }
         

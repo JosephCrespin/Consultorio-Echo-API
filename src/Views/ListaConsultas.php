@@ -2,6 +2,7 @@
 
 <body>
 <a href="?action=create">
+
 <button type="button" class="btn btn-outline-dark">Crear Consulta</button> 
 </a>
 <a href="?action=done">
@@ -21,6 +22,7 @@
     </thead>
     <tbody>
 <?php
+
        foreach ($data["consultas"] as $consulta) 
         { echo "
                 <tr>
