@@ -7,15 +7,18 @@ class Logger
 
     public static function log ($action = '', $message = '', $data = null)
     {
+        $data = json_encode($data);
         $time = date("d/m/Y H:i:s");
         $fileToLog = fopen("src/Logger/test.log", "a");
-        fwrite($fileToLog, "Time: {$time}\r\n");
-        fwrite($fileToLog, "Action: {$action} \r\n");
-        fwrite($fileToLog, "Message: {$message}\r\n");
-        fwrite($fileToLog, "Data: {$data}");
+        fwrite($fileToLog, "\n");
+        fwrite($fileToLog, "LOG\r\n");
+        fwrite($fileToLog, "TIME: {$time}\r\n");
+        fwrite($fileToLog, "ACTION: {$action} \r\n");
+        fwrite($fileToLog, "MESSAGE: {$message}\r\n");
+        fwrite($fileToLog, "DATA: {$data}\r\n");
+        fwrite($fileToLog, "=================================");
         fclose($fileToLog);
     }
 }
 
-// logger($action, $message, $array_data);
 

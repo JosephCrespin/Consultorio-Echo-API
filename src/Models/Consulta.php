@@ -51,15 +51,11 @@ class Consulta {
     public function savedb() 
 
     {
-        
         $this->database->mysql->query("INSERT INTO `consultas` (`id`,`name`, `tema`) VALUES ('{$this->id}','{$_POST["name"]}','{$_POST["tema"]}');");
         Logger::log("Post", "save");
-        
-        
     }
 
     public function delete($id)
-    
     {
         $this->database->mysql->query("DELETE FROM `consultas` WHERE `consultas`.`id`='{$id}'");                            
     }
@@ -70,7 +66,6 @@ class Consulta {
         
         $result = $query->fetchAll();
         return new Consulta($result[0]["id"], $result[0]["name"], $result[0]["tema"], $result[0]["fecha"], $result[0]["hecho"]);
-        
     }
 
     public function update($id) 

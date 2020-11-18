@@ -8,6 +8,7 @@
   <table class="table table-hover table-dark">
     <thead>
       <tr>
+        <th scope="col">Hecho</th>
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
         <th scope="col">Tema</th>
@@ -20,8 +21,10 @@
        foreach ($data["consultas"] as $consulta) 
         { echo "
                 <tr>
-                  <a href='?action=marcarHecha&id={$consulta->id}'>
-                  <button class= 'btn btn-danger'>Done</button></a>
+                  <td>
+                    <a href='?action=marcarHecha&id={$consulta->id}'>
+                    <button class= 'btn btn-danger'>Done</button></a>
+                  </th>
                   <th scope='row'>{$consulta->id}</th> 
                   <td>{$consulta->name}</td>
                   <td>{$consulta->tema}</td>
