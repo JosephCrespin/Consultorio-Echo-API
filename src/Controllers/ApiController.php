@@ -63,6 +63,8 @@ class ApiController
        $consulta = new consulta($request["name"],["tema"]);
        $consulta->savedb();
        
+       var_dump($request);
+
        $this->index();
 
     }
