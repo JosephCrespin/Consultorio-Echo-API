@@ -80,6 +80,24 @@ class Consulta {
         $this->hecho = true;
         $this->database->mysql->query("UPDATE `consultas` SET `hecho` = '{$this->hecho}' WHERE `consultas`.`id`='{$this->id}'"); 
     }
+
+    public function DoneConsulta ()
+    {
+        $query = $this->database->mysql->query("select * FROM consultas WHERE hecho = 1");
+     
+        $listaTerminada = [];
+
+            foreach ($query as $consulta) {
+                $itemConsulta = new Consulta($consulta["id"], $consulta["name"],  $consulta["tema"], $consulta["fecha"]);
+                array_push($listaTerminada, $itemConsulta);
+            }
+            
+        Logger::log("get", "listaTerminada");
+         
+        return $listaTerminada;
+    }
+    
     
 }
+
 

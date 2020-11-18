@@ -118,7 +118,16 @@ class ConsultaController
         
     }
 
-    
+    public function historial()
+    {
+        $consultaHistorial = new consulta();
+        $consultas = $consultaHistorial->DoneConsulta();
+
+        new View ("DoneConsultas", ["consultas" => $consultas,]);
+
+    }
+
+
 }
 
 
