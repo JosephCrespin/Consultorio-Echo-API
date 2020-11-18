@@ -1,8 +1,8 @@
 
 
-    <?php
-    require("vendor/autoload.php");
-    require("src/App.php");
+<?php
+require("vendor/autoload.php");
+require("src/App.php");
+?>
 
-    ?>
-    
+
