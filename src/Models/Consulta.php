@@ -82,7 +82,7 @@ class Consulta {
     public function consultaTerminada($id) 
     {
         $this->hecho = true;
-        $this->database->mysql->query("UPDATE `consultas` SET `hecho` = '{$this->hecho}' WHERE `consultas`.`id`={$this->id}"); 
+        $this->database->mysql->query("UPDATE `consultas` SET `hecho` = '{$this->hecho}' WHERE `consultas`.`id`='{$this->id}'"); 
     }
     
 }

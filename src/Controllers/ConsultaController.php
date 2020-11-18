@@ -105,7 +105,7 @@ class ConsultaController
 
     public function marcarHecha(array $request, $id){
 
-        $consultaHecha = new consulta();
+        $consultaHecha = new consulta($id);
         $consulta = $consultaHecha->encontrarId($id);
         $consulta->consultaTerminada($id);
         
