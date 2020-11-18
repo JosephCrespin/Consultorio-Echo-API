@@ -6,20 +6,20 @@ use App\Models\Consulta;
 
 
 
-class ExampleTest extends TestCase
-{
+// class ConsultaTest extends TestCase
+// {
 
-	public function test_create_consulta()
-	{
-        //scenario
-        $consulta = new consulta("id", "Laura", "no da pie con bola", "fecha");
+// 	public function test_create_consulta()
+//     {	
+//         $consulta = new Consulta("id", "Laura", "no da pie con bola", "fecha");
     
-        //when
-        $consulta->savedb();
+//         $result = $consulta->hecho;
+//         $this->assertEquals(false, $result);
+//     }
 
-        //then
-        $result = $consulta->name;
-        $this->assertEquals($consulta, $result);
-    }
+//     public function test_delete_consulta()
+//     {
+
+//     }
     
-}
+// }
