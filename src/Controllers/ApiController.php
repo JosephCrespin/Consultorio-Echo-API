@@ -9,25 +9,33 @@ use App\Views\View;
 class ApiController
 {
 
-    public function __construct(string $method, array $content = null, $id = null)
+    public $method;
+    
+    
+    public function __construct()
     {   
-        if($method == "GET") {
+        $this->method = $_SERVER["REQUEST_METHOD"];
+
+        if($this->method == "GET") {
             $this->index();
         }
         
-        if($method == "POST") {
-            $this->save($content);
+        if($this->method == "POST") {
+            $this->save();
         }   
         
-        if($method == "DELETE") {
-            $this->delete($id);
+        if($this->method == "DELETE") {
+               
+            $this->delete($_GET["id"]);
+        }
+
+        if($this->method == "PUT") {
+           
+            $this->update();
         }
         
        
     }
-        
-
-
         
    
     public function index(): void
@@ -52,52 +60,52 @@ class ApiController
       
     }
 
-    public function create(): void
-    {
-        new View ("CrearConsulta");
-
-    }
-    
-    public function save($request): void
-    {
-       $consulta = new consulta($request["name"],["tema"]);
-       $consulta->savedb();
        
-       var_dump($request);
-
-       $this->index();
-
+    public function save(): void
+    {
+        $id = uniqid();
+       $request = json_decode(file_get_contents("php://input"), true); 
+       $consulta = new consulta($id, $request["name"], $request["tema"]);
+       $consulta->savedb();
+       $consultaJson = [
+        "id" => $consulta->id,
+        "name" => $consulta->name,
+        "tema" => $consulta->tema,
+        "fecha" => $consulta->fecha,
+        "hecho" => $consulta->hecho
+        
+       ];
+        echo json_encode($consultaJson);
     }
 
 
     public function delete($id)
     {
-        $consultaDelete = new consulta();
+        $consultaDelete = new consulta($id);
         $consulta = $consultaDelete->encontrarId($id);
-        $consulta->delete();
-
-        $this->index();
-
-
+        $consulta->delete($id);
     }
 
-    public function edit($id)
+   
+    public function update()
     {
-        $consultaEdit = new consulta();
-        $consulta = $consultaEdit->encontrarId($id);
-
-        new View("EditarConsulta",["consulta" => $consulta]);
-
-    }
-
-    public function update(array $request, $id)
-    {
+        $id = $_GET["id"];
+        $request = json_decode(file_get_contents("php://input"), true); 
         $consultaEnviar = new consulta();
         $consulta = $consultaEnviar->encontrarId($id);
-        $consulta->rename($request ['name'], $request ['tema']);
-        $consulta->update(); 
+        $consulta->rename($request ['name'], $request['tema']);
+        $consulta->update($id); 
+        $consultaJson = [
+            "id" => $consulta->id,
+            "name" => $consulta->name,
+            "tema" => $consulta->tema,
+            "fecha" => $consulta->fecha,
+            "hecho" => $consulta->hecho
+            
+           ];
 
-        $this->index();
+        echo json_encode($consultaJson);
+
     }
 
     

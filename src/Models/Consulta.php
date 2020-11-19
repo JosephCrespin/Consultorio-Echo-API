@@ -47,7 +47,7 @@ class Consulta {
     public function savedb() 
 
     {
-        $this->database->mysql->query("INSERT INTO `consultas` (`id`,`name`, `tema`) VALUES ('{$this->id}','{$_POST["name"]}','{$_POST["tema"]}');");
+        $this->database->mysql->query("INSERT INTO `consultas` (`id`,`name`,`tema`) VALUES ('{$this->id}','{$this->name}','{$this->tema}');");
         Logger::log("Post", "save");
     }
 

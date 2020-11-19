@@ -99,7 +99,7 @@ class ConsultaController
 
     public function update(array $request, $id)
     {
-        $consultaEnviar = new consulta();
+        $consultaEnviar = new consulta($id);
         $consulta = $consultaEnviar->encontrarId($id);
         $consulta->rename($request ['name'], $request ['tema']);
         $consulta->update($id); 
