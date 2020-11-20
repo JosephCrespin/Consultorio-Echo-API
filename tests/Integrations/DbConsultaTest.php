@@ -7,7 +7,7 @@ use App\Models\Consulta;
 
 
 
-class ConsultaTest extends TestCase
+class ConsultaTestDB extends TestCase
 {
     private $db;
 
