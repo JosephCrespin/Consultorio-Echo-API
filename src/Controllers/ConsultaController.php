@@ -67,7 +67,7 @@ class ConsultaController
     public function save($request): void
     {
         $id = uniqid();
-       $consulta = new consulta($id, $request["name"],["tema"]);
+       $consulta = new consulta($id, $request["name"], $request["tema"]);
        $consulta->savedb();
        
        $this->index();

@@ -45,7 +45,8 @@ class ApiController
         $consultas = $consulta->crearListaConsultas();
         $listaJson = [];
 
-        foreach($consultas as $consulta)  {
+        foreach($consultas as $consulta)  
+        {
             $consultaJson = [
                 "id" => $consulta->id,
                 "name" => $consulta->name,
