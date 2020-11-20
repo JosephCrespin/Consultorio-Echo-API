@@ -11,41 +11,48 @@ class ConsultaController
 
     public function __construct()
     {   
-        if(isset($_GET) && ($_GET["action"] == "create")) {
-            $this->create();
-            return;
-        }
+        if(isset($_GET)){
+            if(isset($_GET["action"])){
+                switch ($_GET["action"]) {
+                    case 'create':
+                       $this->create();
+                        break;
+                    case 'save':
+                        $this->save($_POST);
+                        break;
+                    case 'delete':
+                        $this->delete($_GET["id"]);
+                            break;
+                    case 'edit':
+                        $this->edit($_GET["id"]);
+                        break; 
+                    case 'update':
+                        $this->update($_POST, $_GET["id"]);
+                        break; 
+                    case 'marcarHecha':
+                        $this->marcarHecha($_POST, $_GET["id"]);
+                        break; 
+                    case 'done':
+                        $this->historial();
+                        break;     
+                    
+                    default:
+                        $this->index();
+                        break;
+                }
+            
+            }else{
 
-        if(isset($_GET) && ($_GET["action"] == "save")) {
-            $this->save($_POST);
-            return;
-        }
+                $this->index();
 
-         if(isset($_GET) && ($_GET["action"] == "delete")) {
-            $this->delete($_GET["id"]);
-            return;
-        }
-
-        if(isset($_GET) && ($_GET["action"] == "edit")) {
-            $this->edit($_GET["id"]);
-            return;
-        }
-
-        if(isset($_GET) && ($_GET["action"] == "update")) {
-            $this->update($_POST, $_GET["id"]);
-            return;
-        }
-        if(isset($_GET) && ($_GET["action"] == "marcarHecha")) {
-            $this->marcarHecha($_POST, $_GET["id"]);
-            return;
-        }
-        if(isset($_GET) && ($_GET["action"] == "done")) {
-            $this->historial();
-            return;
-        }
+            }
 
 
-        $this->index();
+        } 
+        
+        
+        
+      
     }
    
     public function index(): void
@@ -67,7 +74,7 @@ class ConsultaController
     public function save($request): void
     {
         $id = uniqid();
-       $consulta = new consulta($id, $request["name"],["tema"]);
+       $consulta = new consulta($id, $request["name"],$request["tema"]);
        $consulta->savedb();
        
        $this->index();
