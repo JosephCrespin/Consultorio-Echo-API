@@ -2,6 +2,11 @@
 
 Desarrollar una aplicación "CRUD" Web en PHP que permita pedir cita a los desarrolladores y equipos para solucionar problemas técnicos con la ayuda del formador o CTO.
 
+## Team
+- [Joseph](https://github.com/JosephCrespin)
+- [Laura](https://github.com/Nau-crc)
+- [Quim](https://github.com/Joaquim-Frances)
+- [Vanessa](https://github.com/vanessacor)
 
 ## Screen Shots
 
